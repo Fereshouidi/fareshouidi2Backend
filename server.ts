@@ -32,14 +32,14 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "*",
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST", "PUT", "DELETE"]
   }
 });
 
 app.get("/", (req, res) => {
   res.send(`Server is working! at port: ${process.env.PORT || 3003}`);
   console.log(`Server is working! at port: ${process.env.PORT || 3003}`);
-  
+
 });
 
 app.get("/getAllClients", async (req, res) => {
