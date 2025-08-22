@@ -33,7 +33,8 @@ const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"]
-  }
+  },
+  transports: ['polling']
 });
 
 app.get("/", (req, res) => {
