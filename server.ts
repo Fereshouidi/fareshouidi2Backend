@@ -37,9 +37,8 @@ const io = new Server(server, {
 });
 
 app.get("/", (req, res) => {
-  res.send("Server is working!");
+  res.send(`Server is working! at port: ${process.env.PORT || 3003}`);
   console.log(`Server is working! at port: ${process.env.PORT || 3003}`);
-
 });
 
 app.get("/getAllClients", async (req, res) => {
