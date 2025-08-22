@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "start": "node --loader ts-node/esm server.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@azure-rest/ai-inference": "latest",
+    "@azure/core-auth": "latest",
+    "@azure/core-sse": "latest",
+    "@google/genai": "^1.7.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "io": "^1.5.3",
+    "mongoose": "^8.16.1",
+    "openai": "latest",
+    "serverless-http": "^3.2.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "type": "module"
+}
