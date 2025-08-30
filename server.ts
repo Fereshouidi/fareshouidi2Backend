@@ -29,9 +29,9 @@ app.use('/routes', WorkRequestRoute);
 
 const port = process.env.PORT || 3003;
 
-// app.use(cors({
-//   origin: "*",
-// }));
+app.use(cors({
+  origin: "*",
+}));
 
 const server = http.createServer(app);
 
