@@ -27,6 +27,7 @@ const io = new Server(server, {
   cors: {
     origin: "*",
   },
+  transports: ["polling"],
 });
 
 app.use('/routes', MessageRoute);
