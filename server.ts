@@ -20,6 +20,14 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+const io = new Server(3003);
+
+
+app.use('/routes', MessageRoute);
+app.use('/routes', ConversationRoute);
+app.use('/routes', WorkRequestRoute);
+
+const port = process.env.PORT || 3003;
 
 // app.use(cors({
 //   origin: "*",
@@ -27,9 +35,9 @@ app.use(express.json());
 
 // const server = http.createServer(app);
 
-const io = new Server(3026);
-
 const conn = await mongoConn;
+
+registerSocketHandlers(io);
 
 
 app.get("/", (req, res) => {
@@ -48,16 +56,10 @@ app.get("/getAllClients", async (req, res) => {
   
 });
 
-app.use('/routes', MessageRoute);
-app.use('/routes', ConversationRoute);
-app.use('/routes', WorkRequestRoute);
-
 // app.use('/routes', ClientRoute);
 
-const port = process.env.PORT || 3003;
 
 
-registerSocketHandlers(io);
 
 console.log({primaryPrompt: primaryPrompt.length});
 
