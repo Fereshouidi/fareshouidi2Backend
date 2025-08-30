@@ -54,7 +54,7 @@ app.use('/routes', WorkRequestRoute);
 
 // app.use('/routes', ClientRoute);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3003;
 
 
 registerSocketHandlers(io);
