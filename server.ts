@@ -20,8 +20,14 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-const io = new Server(3003);
 
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 app.use('/routes', MessageRoute);
 app.use('/routes', ConversationRoute);
@@ -32,8 +38,6 @@ const port = process.env.PORT || 3003;
 app.use(cors({
   origin: "*",
 }));
-
-const server = http.createServer(app);
 
 const conn = await mongoConn;
 
