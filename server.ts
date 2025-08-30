@@ -28,7 +28,7 @@ app.use(cors({
 
 const server = http.createServer(app);
 
-const io = new Server(server);
+const io = new Server(3000);
 
 app.get("/", (req, res) => {
   res.send(`Server is working! at port: ${process.env.PORT || 3003}`);
