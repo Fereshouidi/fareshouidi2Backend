@@ -16,19 +16,21 @@ import http from 'http';
 import Client from './models/client.js';
 
 dotenv.config();
-const conn = await mongoConn;
 
 
 const app = express();
 app.use(express.json());
 
-app.use(cors({
-  origin: "*",
-}));
+// app.use(cors({
+//   origin: "*",
+// }));
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-const io = new Server(server);
+const io = new Server(3026);
+
+const conn = await mongoConn;
+
 
 app.get("/", (req, res) => {
   res.send(`Server is working! at port: ${process.env.PORT || 3003}`);
@@ -52,7 +54,7 @@ app.use('/routes', WorkRequestRoute);
 
 // app.use('/routes', ClientRoute);
 
-const port = process.env.PORT || 3003;
+const port = process.env.PORT;
 
 
 registerSocketHandlers(io);
@@ -61,7 +63,7 @@ console.log({primaryPrompt: primaryPrompt.length});
 
 // const handler = serverless(app);
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server is running at the port: ${port}`);
 });
 
