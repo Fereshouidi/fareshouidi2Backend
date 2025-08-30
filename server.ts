@@ -33,7 +33,7 @@ const port = process.env.PORT || 3003;
 //   origin: "*",
 // }));
 
-// const server = http.createServer(app);
+const server = http.createServer(app);
 
 const conn = await mongoConn;
 
@@ -65,7 +65,7 @@ console.log({primaryPrompt: primaryPrompt.length});
 
 // const handler = serverless(app);
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running at the port: ${port}`);
 });
 
