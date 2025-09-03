@@ -10,11 +10,12 @@ import OpenAI from "openai";
 import { getPureModelMessage, getPureClientMessage, isOnlyTellClientToWaitTag } from "../../utils/helper.js";
 import { Socket } from "socket.io";
 import { ObjectId } from "mongoose";
-import { maxMessageToGet } from "../../constants/maxMessage.js";
+import { geminiKey, maxMessageToGet } from "../../constants/index.js";
+import { text } from "stream/consumers";
 
 
 const ai = new GoogleGenAI({
-    apiKey: "AIzaSyDjLld0ynrVEvbIFK3inQCp4tR3UEScaxs",
+    apiKey: geminiKey,
 });
 
 export const createMessage = async (conversationId: string | ObjectId, clientId: string | ObjectId, role: string, parts: MessagePartsParams[], type: string, socket?: Socket) => {
@@ -62,7 +63,7 @@ export async function getTextAnswer(
 
         while (numOfTry < 5) {
 
-            let aiResult_ = await getAnswerFromGemini(model, temporaryMemory, currentMessage) as {text: string, err: unknown}
+            let aiResult_ = await getAnswerFromDeepSeek(model, temporaryMemory, currentMessage) as {text: string, err: unknown}
 
             if (!aiResult_.text) {
                 console.error('Something went wrong while getting response from the model!');
@@ -216,9 +217,11 @@ export const getAnswerFromGemini = async (model: string, history: MessageParams[
 
 export const getAnswerFromDeepSeek = async (model: string, history: MessageParams[], custimizedClientMessage: string) => {    
 
+    let res = {text: '', err: null as unknown | null};
+
     const openai = new OpenAI({
         baseURL: "https://openrouter.ai/api/v1",
-        apiKey: process.env.OPEN_ROUTER_Key,
+        apiKey: "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",
     });
     
     try {
@@ -244,10 +247,18 @@ export const getAnswerFromDeepSeek = async (model: string, history: MessageParam
             
         });
 
-        return completion.choices[0].message.content;
+        res = {
+            text: completion.choices[0].message.content ?? '', 
+            err: null
+        }
+        return res;
 
     } catch (err) {
-        throw error('error while getting answer from deepseek', err);
+        // throw error('error while getting answer from deepseek', err);
+        return {
+            text: null,
+            err: err
+        }
     }
 
 

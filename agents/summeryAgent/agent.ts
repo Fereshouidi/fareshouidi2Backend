@@ -2,6 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { ConversationParams, MessageParams, ClientParams } from "../../types.js";
 import Conversation from "../../models/conversation.js";
 import Client from "../../models/client.js";
+import { geminiKey } from "../../constants/index.js";
 
 
 
@@ -11,7 +12,7 @@ import Client from "../../models/client.js";
 export const createConversationTittle = async (firstMessage: string) => {
 
     const ai = new GoogleGenAI({
-        apiKey: "AIzaSyDjLld0ynrVEvbIFK3inQCp4tR3UEScaxs",
+        apiKey: geminiKey,
     });
     
 
@@ -83,7 +84,7 @@ export const summarizeConversation_updateNotes = async (conversation: Conversati
     }
 
     const ai = new GoogleGenAI({
-        apiKey: "AIzaSyDjLld0ynrVEvbIFK3inQCp4tR3UEScaxs",
+        apiKey: geminiKey,
     });
     
 

@@ -1,4 +1,4 @@
-import { maxMessageToGet } from "../maxMessage.js";
+import { maxMessageToGet } from "../index.js";
 
 export const direction = `
     - لارسال رسالة الى العميل ضعها هنا <messageToClient>نص الرسالة</messageToClient>
