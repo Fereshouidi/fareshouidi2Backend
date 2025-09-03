@@ -63,7 +63,7 @@ export async function getTextAnswer(
 
         while (numOfTry < 5) {
 
-            let aiResult_ = await getAnswerFromDeepSeek(model, temporaryMemory, currentMessage) as {text: string, err: unknown}
+            let aiResult_ = await getAnswerFromGemini(model, temporaryMemory, currentMessage) as {text: string, err: unknown}
 
             if (!aiResult_.text) {
                 console.error('Something went wrong while getting response from the model!');
