@@ -43,8 +43,8 @@ export const getAnswer_ = async (
         conversation = await getConversationById(conversationId) as ConversationParams;
 
       } else {
-        const conversationTittle = await createConversationTittle(message) as unknown as string;        
-        conversation = await createConversation(clientId, conversationTittle) as ConversationParams;
+        // const conversationTittle = await createConversationTittle(message) as unknown as string;        
+        conversation = await createConversation(clientId, 'new conversation') as ConversationParams;
         conversation = {...conversation, length: 1}
         socket.emit('add-conversation', {newConversation: conversation});
       }
