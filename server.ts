@@ -63,6 +63,23 @@ app.get("/getAllClients", async (req, res) => {
 // app.use('/routes', ClientRoute);
 
 
+// import { GoogleGenAI } from "@google/genai";
+
+// const ai = new GoogleGenAI({
+//   apiKey: "AIzaSyAYH8BuJs4GQYxAY4iMf-ilzerZmcbseL4",
+
+// });
+
+// async function main() {
+//   const response = await ai.models.generateContent({
+//     model: "gemini-2.5-flash",
+//     contents: "Explain how AI works in a few words",
+//   });
+//   console.log(response.text);
+// }
+
+// await main();
+
 
 
 console.log({primaryPrompt: primaryPrompt.length});
