@@ -82,7 +82,7 @@ app.get("/getAllClients", async (req, res) => {
 
 
 
-console.log({primaryPrompt: primaryPrompt.length});
+// console.log({primaryPrompt: primaryPrompt.length});
 
 // const handler = serverless(app);
 
