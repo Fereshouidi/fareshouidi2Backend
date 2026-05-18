@@ -30,6 +30,11 @@ const io = new Server(server, {
   }
 });
 
+app.use(cors({
+    origin: '*', 
+    credentials: true
+}));
+
 
 app.use('/routes', MessageRoute);
 app.use('/routes', ConversationRoute);
@@ -87,6 +92,10 @@ app.get("/getAllClients", async (req, res) => {
 // console.log({primaryPrompt: primaryPrompt.length});
 
 // const handler = serverless(app);
+
+// server.listen(port, () => {
+//   console.log(`Server is running at the port: ${port}`);
+// });
 
 server.listen(port, () => {
   console.log(`Server is running at the port: ${port}`);
